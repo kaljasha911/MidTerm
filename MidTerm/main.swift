@@ -67,7 +67,7 @@ class ProductManager {
             print("No products found.")
         } else {
             for product in products {
-                print("------------------------------")
+                print("------------------------------------------------------------------------")
                 print("Product ID: \(product.id), Name: \(product.name)")
             }
             
@@ -84,7 +84,7 @@ class ProductManager {
                 print ("Total Price with tax included: %.2f", clothing.calculateTotalPrice(withTax: 0.13))
             }
             
-            print("---------------------------")
+            print("----------------------------------------------------------------------------------")
         }
         
         }
@@ -96,9 +96,9 @@ func ShowMenu() {
     
     while true {
         print("\nMenu")
-        print("1. Add new Item")
-        print("2. Display All Items")
-        print("3. Exit")
+        print("1. Add new Item.")
+        print("2. Display All Items.")
+        print("3. Exit.")
         print("Enter your choice: ", terminator: "")
         
         if let choice = readLine(), let option = Int(choice)  {
@@ -108,19 +108,20 @@ func ShowMenu() {
             case 2:
                 manager.displayProducts()
             case 3:
-                print( "Existing application!\n" )
+                print( "Exiting the application! Bye!\n" )
                 return
             default:
                 break
             }
         } else {
-            print("Invalid Input, please enter a number")
+            print("Invalid Input, please enter a number.")
         }
     }
 }
 
+// Function to add a new product based on user input
 func addNewItem(manager: ProductManager) {
-    print("Select Product type: 1 for Electronics, 2 for Clothing", terminator: " ")
+    print("Select Product type: 1 for Electronics, 2 for Clothing.", terminator: " ")
     if let typeChoice = readLine(), let type = Int(typeChoice) {
         print("Enter Product Name: ", terminator: "" )
         guard let name = readLine(), !name.isEmpty else {
@@ -129,14 +130,14 @@ func addNewItem(manager: ProductManager) {
         }
         print( "Enter Product Price: ", terminator: "" )
         guard let priceInput = readLine(), let price = Double(priceInput) else {
-            print("Invalid Price")
+            print("Invalid Price.")
             return
         }
         switch type {
         case 1:
             print( "Enter warranty period in months: ", terminator: "" )
             guard let warrantyInput = readLine(), let warranty = Int(warrantyInput) else {
-                print("Invalid warranty period")
+                print("Invalid warranty period.")
                 return
             }
             let electronics = Electronics(name: name, warrantyPeriod: warranty, price: price)
@@ -164,5 +165,5 @@ func addNewItem(manager: ProductManager) {
             print("Invalid Input")
         }
 }
-
+// Start the menu loop
 ShowMenu()
